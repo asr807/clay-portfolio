@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CL4Y — Portfolio</title>
+  <style>
+    :root{--max:900px;--pad:18px;font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial;}
+    body{margin:0;background:#f7f7fb;color:#111;display:flex;justify-content:center;padding:36px;}
+    .wrap{max-width:var(--max);width:100%;background:#fff;border-radius:12px;padding:28px;box-shadow:0 6px 24px rgba(12,12,30,.08);}
+    header{display:flex;align-items:center;gap:16px}
+    .avatar{width:72px;height:72px;border-radius:12px;background:linear-gradient(135deg,#667eea,#764ba2);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:22px}
+    h1{margin:0;font-size:22px}
+    p.lead{margin:6px 0 0 0;color:#444}
+    .grid{display:grid;grid-template-columns:1fr;gap:16px;margin-top:18px}
+    @media(min-width:820px){.grid{grid-template-columns:1fr 380px}}
+    .card{background:#fbfbff;padding:14px;border-radius:10px;border:1px solid rgba(20,20,60,.03)}
+    .projects .project{padding:12px;border-radius:8px;border:1px dashed rgba(20,20,60,.04);margin-bottom:12px}
+    .btn{display:inline-block;padding:8px 12px;border-radius:8px;text-decoration:none;border:1px solid rgba(0,0,0,.06);background:#fff}
+    small{color:#666}
+    /* mini dashboard */
+    .dash{margin-top:12px}
+    .summary{display:flex;gap:8px;align-items:center}
+    .summary .bal{font-size:20px;font-weight:700}
+    .tx-list{max-height:160px;overflow:auto;margin-top:8px}
+    .tx{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(0,0,0,.03)}
+    .muted{color:#666;font-size:13px}
+  </style>
+</head>
+<body>
+  <main class="wrap" role="main">
+    <header>
+      <div class="avatar">CL</div>
+      <div>
+        <h1>CL4Y — Banker & Developer (learning)</h1>
+        <p class="lead">I build simple web tools for banking workflows. Focused, recovering, showing results.</p>
+        <div style="margin-top:8px">
+          <a class="btn" href="#" id="viewDemo">Live Demo</a> 
+          <a class="btn" href="https://www.youtube.com/@BankerOnTheMove" target="_blank">Demo Video</a>
+        </div>
+      </div>
+    </header>
+
+    <section class="grid">
+      <section>
+        <div class="card projects">
+          <h3>Projects</h3>
+
+          <div class="project">
+            <strong>Mini Banking Dashboard</strong>
+            <div class="muted">Client-side demo: account summary, transactions, transfer simulation.</div>
+            <div style="margin-top:8px"><a class="btn" href="#dashboard" onclick="document.getElementById('dashboard').scrollIntoView()">Open demo</a></div>
+          </div>
+
+          <div class="project">
+            <strong>Banker on the Move — Channel</strong>
+            <div class="muted">Short demo video & walkthroughs. <em>Link to YouTube</em></div>
+          </div>
+
+        </div>
+
+        <div id="dashboard" class="card dash" style="margin-top:12px">
+          <h3>Mini Banking Dashboard (demo)</h3>
+          <div class="summary">
+            <div>
+              <div class="muted">Available balance</div>
+              <div class="bal" id="balance">LKR 0.00</div>
+            </div>
+            <div style="margin-left:auto">
+              <small id="lastUpdated">Updated: —</small>
+            </div>
+          </div>
+
+          <div style="margin-top:10px">
+            <form id="transferForm" onsubmit="return false">
+              <label class="muted">Transfer to</label><br/>
+              <input id="to" placeholder="Account number or name" style="padding:8px;border-radius:6px;border:1px solid #ddd;width:100%;margin-top:6px"/><br/>
+              <input id="amount" type="number" placeholder="Amount (LKR)" style="padding:8px;border-radius:6px;border:1px solid #ddd;width:100%;margin-top:6px"/><br/>
+              <div style="margin-top:8px">
+                <button class="btn" id="sendBtn">Send (simulate)</button>
+                <button class="btn" id="exportBtn" style="margin-left:8px">Download CSV</button>
+              </div>
+            </form>
+          </div>
+
+          <div class="tx-list" id="txList" style="margin-top:10px"></div>
+        </div>
+      </section>
+
+      <aside>
+        <div class="card">
+          <h4>About me</h4>
+          <p class="muted">Bank associate at HNB Dehiattakandiya. Learning web dev. Making small tools that solve simple banking tasks.</p>
+          <p><strong>Contact</strong><br/><small>email: asr4771@gmail.com</small></p>
+          <p>
+            <a class="btn" href="https://github.com/asr807" target="_blank">GitHub</a> 
+            <a class="btn" href="https://www.linkedin.com" target="_blank">LinkedIn</a>
+          </p>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <script>
+    const state = {
+      balance: 25000,
+      tx: [
+        {id:1,date:'2025-09-01',desc:'Salary credit',amount:50000},
+        {id:2,date:'2025-09-05',desc:'Grocery',amount:-8250},
+        {id:3,date:'2025-09-10',desc:'POS payment',amount:-1250}
+      ]
+    };
+
+    function render(){
+      document.getElementById('balance').textContent = 'LKR ' + state.balance.toLocaleString();
+      document.getElementById('lastUpdated').textContent = 'Updated: ' + new Date().toLocaleString();
+      const txList = document.getElementById('txList');
+      txList.innerHTML = '';
+      state.tx.slice().reverse().forEach(t=>{
+        const div = document.createElement('div');
+        div.className = 'tx';
+        div.innerHTML = '<div><strong>'+t.desc+'</strong><div class="muted">'+t.date+'</div></div><div>'+ (t.amount<0? ('- LKR '+Math.abs(t.amount).toLocaleString()) : ('LKR '+t.amount.toLocaleString())) +'</div>';
+        txList.appendChild(div);
+      });
+    }
+
+    document.getElementById('sendBtn').addEventListener('click', ()=>{
+      const to = document.getElementById('to').value || 'Unknown';
+      const amt = Number(document.getElementById('amount').value) || 0;
+      if(!amt || amt <= 0){ alert('Enter a positive amount'); return; }
+      if(amt > state.balance){ alert('Insufficient funds (demo)'); return; }
+      state.balance -= amt;
+      state.tx.push({id: Date.now(), date: new Date().toISOString().slice(0,10), desc: `Transfer to ${to}`, amount: -amt});
+      render();
+      alert('Transfer simulated — UI updated (client-side only).');
+    });
+
+    document.getElementById('exportBtn').addEventListener('click', ()=>{
+      const headers = ['date,description,amount'];
+      const rows = state.tx.map(t => [t.date, `"${t.desc}"`, t.amount].join(','));
+      const csv = headers.concat(rows).join('\n');
+      const blob = new Blob([csv], {type:'text/csv'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = 'transactions.csv'; a.click();
+      URL.revokeObjectURL(url);
+    });
+
+    render();
+    document.getElementById('viewDemo').addEventListener('click', ()=> document.getElementById('dashboard').scrollIntoView());
+  </script>
+</body>
+</html>
