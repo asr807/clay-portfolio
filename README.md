@@ -31,7 +31,8 @@ This project is my way of proving my progress and showing visible results.
    ```bash
    git clone https://github.com/asr807/clay-portfolio.git
 
-   📬 Contact
+
+## 📬 Contact
 
 Name: CL4Y
 Email: asr4771@gmail.com
