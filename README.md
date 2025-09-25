@@ -1,21 +1,32 @@
-# Clay — Personal Portfolio & Mini Banking Dashboard
+# CL4Y — Personal Portfolio & Mini Banking Dashboard
 
-Small one-page portfolio + client-side demo built to showcase practical web skills.
-Live demo: https://<your-username>.github.io/clay-portfolio/
+Live demo: [https://asr807.github.io/clay-portfolio/](https://asr807.github.io/clay-portfolio/)
 
-Features
+---
+
+## 📌 About
+This is my personal portfolio website and a small showcase project.  
+It includes:
+- A simple one-page portfolio
+- A **Mini Banking Dashboard** built with HTML, CSS, and JavaScript
+
+I am learning web development while working in the banking industry.  
+This project is my way of proving my progress and showing visible results.
+
+---
+
+## ✨ Features
 - Responsive single-page portfolio
-- Mini Banking Dashboard (client-side):
-  - Account balance, transaction list
-  - Simulated transfer (updates UI)
+- Mini Banking Dashboard (client-side only):
+  - Account summary
+  - Transaction list
+  - Simulated transfers (updates UI instantly)
   - Export transactions to CSV
+- Links to my GitHub, YouTube, and contact details
 
-Why this project?
-- Relevant to banking background (shows domain understanding)
-- Small, testable, quick to demo (60–90s video)
+---
 
-How to run locally:
-1. Open `index1.html` in a browser.
-2. Try the transfer form and export CSV.
-
-Contact: asr4771@gmail.com
+## 🛠 How to Run
+1. Clone this repo or download the code:
+   ```bash
+   git clone https://github.com/asr807/clay-portfolio.git
