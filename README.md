@@ -30,3 +30,11 @@ This project is my way of proving my progress and showing visible results.
 1. Clone this repo or download the code:
    ```bash
    git clone https://github.com/asr807/clay-portfolio.git
+
+   📬 Contact
+
+Name: CL4Y
+Email: asr4771@gmail.com
+GitHub: asr807
+
+⭐ If you like this project, please give it a star on GitHub!
