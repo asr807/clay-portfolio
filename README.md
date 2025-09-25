@@ -34,8 +34,10 @@ This project is my way of proving my progress and showing visible results.
 
 ## 📬 Contact
 
-Name: CL4Y
-Email: asr4771@gmail.com
-GitHub: asr807
+- Name: CL4Y
+
+- Email: asr4771@gmail.com
+
+- GitHub: asr807
 
 ⭐ If you like this project, please give it a star on GitHub!
