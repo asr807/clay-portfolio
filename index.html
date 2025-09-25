@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Clay — Portfolio</title>
+  <title>CL4Y — Portfolio</title>
   <style>
     :root{--max:900px;--pad:18px;font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial;}
     body{margin:0;background:#f7f7fb;color:#111;display:flex;justify-content:center;padding:36px;}
@@ -32,9 +32,12 @@
     <header>
       <div class="avatar">CL</div>
       <div>
-        <h1>Clay — Banker & Developer (learning)</h1>
-        <p class="lead">I build simple web tools for banking workflows. Recovering, focused, showing results.</p>
-        <div style="margin-top:8px"><a class="btn" href="#" id="viewDemo">Live Demo</a> <a class="btn" href="https://www.youtube.com" target="_blank">Demo Video</a></div>
+        <h1>CL4Y — Banker & Developer (learning)</h1>
+        <p class="lead">I build simple web tools for banking workflows. Focused, recovering, showing results.</p>
+        <div style="margin-top:8px">
+          <a class="btn" href="#" id="viewDemo">Live Demo</a> 
+          <a class="btn" href="https://www.youtube.com/@BankerOnTheMove" target="_blank">Demo Video</a>
+        </div>
       </div>
     </header>
 
@@ -55,6 +58,17 @@
           </div>
 
         </div>
+
+        <div id="loginCard" class="card" style="margin-top:12px">
+  <h3>Login Simulation</h3>
+  <form id="loginForm" onsubmit="return false">
+    <input id="user" placeholder="Username" style="padding:8px;width:100%;margin-top:6px;border:1px solid #ddd;border-radius:6px"/><br/>
+    <input id="pin" type="password" placeholder="PIN" style="padding:8px;width:100%;margin-top:6px;border:1px solid #ddd;border-radius:6px"/><br/>
+    <button class="btn" style="margin-top:8px">Login</button>
+    <div id="loginMsg" class="muted" style="margin-top:6px"></div>
+  </form>
+</div>
+
 
         <div id="dashboard" class="card dash" style="margin-top:12px">
           <h3>Mini Banking Dashboard (demo)</h3>
@@ -89,14 +103,16 @@
           <h4>About me</h4>
           <p class="muted">Bank associate at HNB Dehiattakandiya. Learning web dev. Making small tools that solve simple banking tasks.</p>
           <p><strong>Contact</strong><br/><small>email: asr4771@gmail.com</small></p>
-          <p><a class="btn" href="https://github.com" target="_blank">GitHub</a> <a class="btn" href="https://lk.linkedin.com/in/akshan-rafeek-51b644229" target="_blank">LinkedIn</a></p>
+          <p>
+            <a class="btn" href="https://github.com/asr807" target="_blank">GitHub</a> 
+            <a class="btn" href="https://lk.linkedin.com/in/akshan-rafeek-51b644229" target="_blank">LinkedIn</a>
+          </p>
         </div>
       </aside>
     </section>
   </main>
 
   <script>
-    // sample data & simple client-side demo logic
     const state = {
       balance: 25000,
       tx: [
@@ -133,7 +149,7 @@
     document.getElementById('exportBtn').addEventListener('click', ()=>{
       const headers = ['date,description,amount'];
       const rows = state.tx.map(t => [t.date, `"${t.desc}"`, t.amount].join(','));
-      const csv = headers.concat(rows).join('\\n');
+      const csv = headers.concat(rows).join('\n');
       const blob = new Blob([csv], {type:'text/csv'});
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
@@ -141,8 +157,26 @@
       URL.revokeObjectURL(url);
     });
 
+    // login simulation
+const loginCard = document.getElementById('loginCard');
+const dashboard = document.getElementById('dashboard');
+dashboard.style.display = 'none'; // hide dashboard until login
+
+document.getElementById('loginForm').addEventListener('submit', ()=>{
+  const u = document.getElementById('user').value;
+  const p = document.getElementById('pin').value;
+  if(u === 'cl4y' && p === '4771'){   // hardcoded for demo
+    loginCard.style.display = 'none';
+    dashboard.style.display = 'block';
+  } else {
+    document.getElementById('loginMsg').textContent = 'Invalid username or PIN (try again)';
+  }
+});
+
+
     render();
     document.getElementById('viewDemo').addEventListener('click', ()=> document.getElementById('dashboard').scrollIntoView());
   </script>
 </body>
 </html>
+
