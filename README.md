@@ -18,4 +18,4 @@ How to run locally:
 1. Open `index1.html` in a browser.
 2. Try the transfer form and export CSV.
 
-Contact: your.asr4771@gmail.com
+Contact: asr4771@gmail.com
