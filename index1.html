@@ -59,6 +59,17 @@
 
         </div>
 
+        <div id="loginCard" class="card" style="margin-top:12px">
+  <h3>Login Simulation</h3>
+  <form id="loginForm" onsubmit="return false">
+    <input id="user" placeholder="Username" style="padding:8px;width:100%;margin-top:6px;border:1px solid #ddd;border-radius:6px"/><br/>
+    <input id="pin" type="password" placeholder="PIN" style="padding:8px;width:100%;margin-top:6px;border:1px solid #ddd;border-radius:6px"/><br/>
+    <button class="btn" style="margin-top:8px">Login</button>
+    <div id="loginMsg" class="muted" style="margin-top:6px"></div>
+  </form>
+</div>
+
+
         <div id="dashboard" class="card dash" style="margin-top:12px">
           <h3>Mini Banking Dashboard (demo)</h3>
           <div class="summary">
@@ -145,6 +156,23 @@
       a.href = url; a.download = 'transactions.csv'; a.click();
       URL.revokeObjectURL(url);
     });
+
+    // login simulation
+const loginCard = document.getElementById('loginCard');
+const dashboard = document.getElementById('dashboard');
+dashboard.style.display = 'none'; // hide dashboard until login
+
+document.getElementById('loginForm').addEventListener('submit', ()=>{
+  const u = document.getElementById('user').value;
+  const p = document.getElementById('pin').value;
+  if(u === 'cl4y' && p === '4771'){   // hardcoded for demo
+    loginCard.style.display = 'none';
+    dashboard.style.display = 'block';
+  } else {
+    document.getElementById('loginMsg').textContent = 'Invalid username or PIN (try again)';
+  }
+});
+
 
     render();
     document.getElementById('viewDemo').addEventListener('click', ()=> document.getElementById('dashboard').scrollIntoView());
